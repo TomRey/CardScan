@@ -56,7 +56,7 @@ public class JPanelMain extends JPanel
 
 	private void control()
 		{
-		File imageFile = new File("C:/Users/Jeremy/Pictures/nomnum.png");
+		File imageFile = new File("images/nomnum.png");
 		//File imageFile = new File("eurotext.bmp");
         ITesseract instance = new Tesseract();  // JNA Interface Mapping
         //ITesseract instance = new Tesseract1(); // JNA Direct Mapping
@@ -65,7 +65,7 @@ public class JPanelMain extends JPanel
             String result = instance.doOCR(imageFile);
             System.out.println(result);
         } catch (TesseractException e) {
-            System.out.println("ERREEUR");
+            System.out.println("ERREUR");
         }
 
 		}
@@ -80,5 +80,4 @@ public class JPanelMain extends JPanel
 		\*------------------------------------------------------------------*/
 
 	// Tools
-
 	}
