@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/OpenCV">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/opencv/opencv/build/java/x64"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="deploy/ext/tess4j-3.0.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/jai_imageio.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/jna.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/lept4j-1.0.1.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/slf4j-api-1.7.13.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/commons-beanutils-1.9.2.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/ghost4j-1.0.0.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/itext-2.1.7.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/jul-to-slf4j-1.7.13.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/logback-classic-1.1.3.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/logback-core-1.1.3.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/rococoa-core-0.5.jar"/>
+	<classpathentry kind="lib" path="deploy/ext/xmlgraphics-commons-1.5.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
