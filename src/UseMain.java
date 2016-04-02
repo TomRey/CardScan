@@ -1,3 +1,4 @@
+import org.opencv.core.Core;
 
 public class UseMain {
 
@@ -12,6 +13,7 @@ public class UseMain {
 
 	public static void main()
 		{
+			System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
 			new JFrameMain();
 		}
 

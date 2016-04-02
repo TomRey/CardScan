@@ -1,11 +1,6 @@
 import java.awt.FlowLayout;
-import java.io.File;
 
 import javax.swing.JPanel;
-
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.TesseractException;
 
 public class JPanelMain extends JPanel
 	{
@@ -14,8 +9,9 @@ public class JPanelMain extends JPanel
 		|*							Constructeurs							*|
 		\*------------------------------------------------------------------*/
 
-	public JPanelMain()
+	public JPanelMain(JFrameMain parent)
 		{
+		this.parent = parent;
 		geometry();
 		control();
 		appearance();
@@ -56,18 +52,10 @@ public class JPanelMain extends JPanel
 
 	private void control()
 		{
-		File imageFile = new File("images/nomnum.png");
-		//File imageFile = new File("eurotext.bmp");
-        ITesseract instance = new Tesseract();  // JNA Interface Mapping
-        //ITesseract instance = new Tesseract1(); // JNA Direct Mapping
-
-        try {
-            String result = instance.doOCR(imageFile);
-            System.out.println(result);
-        } catch (TesseractException e) {
-            System.out.println("ERREUR");
-        }
-
+		new Maestro("images/carte.jpg").process();
+		new Permis("images/carte2.jpg").process();
+		new Postcard("images/carte3.jpg").process();
+		parent.dispose();
 		}
 
 	private void appearance()
@@ -78,6 +66,5 @@ public class JPanelMain extends JPanel
 	/*------------------------------------------------------------------*\
 		|*							Attributs Private						*|
 		\*------------------------------------------------------------------*/
-
-	// Tools
+	JFrameMain parent;
 	}

@@ -35,8 +35,8 @@ import javax.swing.JFrame;
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		panelMain = new JPanelMain();
-		
+		panelMain = new JPanelMain(this);
+
 		// Layout : Specification
 			{
 			BorderLayout borderLayout=new BorderLayout();
@@ -60,7 +60,7 @@ import javax.swing.JFrame;
 		{
 		setSize(600, 400);
 		setLocationRelativeTo(null); // frame centrer
-		setVisible(true); // last!
+		setVisible(false); // last!
 		}
 
 	/*------------------------------------------------------------------*\
