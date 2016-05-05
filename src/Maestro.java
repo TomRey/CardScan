@@ -46,15 +46,20 @@ public class Maestro extends Card
 	protected void hideInfo()
 		{
 		Imgproc.rectangle(mTreatment, new Point(infoRect.width - (infoRect.width * 0.3), 0), new Point(infoRect.width, 0), new Scalar(0), infoRect.height);
-		super.hideInfo();
 		}
 
 	@Override
 	protected void printInfos(String[] result)
 		{
-		System.out.println("MAESTRO");
-		System.out.println(result[0] + "\n" + result[2].subSequence(0, result[2].length() - 2) + "-" + result[2].charAt(result[2].length() - 1));
-		System.out.println("\n");
+		infos = "<html><p>MAESTRO</p>";
+		for(int i = 0; i < result.length; i++)
+			{
+			if (i != 1)
+				{
+				infos += "<p>"+result[i]+"</p>";
+				}
+			}
+		infos += "</html>";
 		}
 
 	/*------------------------------------------------------------------*\
