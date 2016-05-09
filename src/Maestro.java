@@ -1,5 +1,3 @@
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
@@ -35,11 +33,11 @@ public class Maestro extends Card
 	\*------------------------------------------------------------------*/
 
 	@Override
-	protected void treatment()
+	protected void treatment(int thres)
 		{
-		mTreatment = new Mat(matInfo.size(), CvType.CV_8U);
 		Imgproc.cvtColor(matInfo, mTreatment, Imgproc.COLOR_BGR2GRAY);
-		Imgproc.threshold(mTreatment, mTreatment, thresold, 255, Imgproc.THRESH_BINARY);
+		Imgproc.threshold(mTreatment, mTreatment, thres, 255, Imgproc.THRESH_BINARY);
+		super.treatment(thres);
 		}
 
 	@Override

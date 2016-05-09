@@ -21,13 +21,22 @@ public class JPanelMain extends JPanel
 
 	public JPanelMain(JFrameMain parent)
 		{
-		//carte = new Card("images/carte.jpg");
-		//carte = new Permis("images/carte2.jpg");
-		//carte = new Postcard("images/carte3.jpg");
 		this.parent = parent;
 		geometry();
 		control();
 		appearance();
+		}
+
+	/*------------------------------------------------------------------*\
+		|*							Methodes Public							*|
+		\*------------------------------------------------------------------*/
+
+	public void setSlider(int crop, int treatment)
+		{
+		carte.crop(crop);
+		carte.treatment(treatment);
+		slider.setValue(crop);
+		sliderThres.setValue(treatment);
 		}
 
 	public void setCard(Card carte)
@@ -36,10 +45,6 @@ public class JPanelMain extends JPanel
 		enableCard(true);
 		repaint();
 		}
-
-	/*------------------------------------------------------------------*\
-		|*							Methodes Public							*|
-		\*------------------------------------------------------------------*/
 
 	/*------------------------------*\
 		|*				Set				*|
@@ -53,10 +58,18 @@ public class JPanelMain extends JPanel
 		|*							Methodes Private						*|
 		\*------------------------------------------------------------------*/
 
+	private void enableCard(boolean bool)
+		{
+		button.setEnabled(bool);
+		slider.setEnabled(bool);
+		sliderThres.setEnabled(bool);
+		}
+
 	private void geometry()
 		{
 		// JComponent : Instanciation
 		slider = new JSlider();
+		sliderThres = new JSlider();
 		button = new JButton("Process");
 		labelResult = new JLabel("");
 		// Layout : Specification
@@ -68,18 +81,13 @@ public class JPanelMain extends JPanel
 		add(slider);
 		add(button);
 		add(labelResult);
-		}
-
-	private void enableCard(boolean bool)
-		{
-		button.setEnabled(bool);
-		slider.setEnabled(bool);
+		add(sliderThres);
 		}
 
 	private void control()
 		{
 		enableCard(false);
-		Dimension dim = new Dimension(200, 20);
+		Dimension dim = new Dimension(300, 20);
 		slider.setSize(dim);
 		slider.setPreferredSize(dim);
 		slider.setLocation(10, 10);
@@ -98,10 +106,28 @@ public class JPanelMain extends JPanel
 				}
 			});
 
-		dim = new Dimension(100, 20);
+		sliderThres.setSize(dim);
+		sliderThres.setPreferredSize(dim);
+		sliderThres.setLocation(10, 210);
+		sliderThres.setMaximum(255);
+		sliderThres.setMinimum(0);
+		sliderThres.setValue(112);
+		sliderThres.addChangeListener(new ChangeListener()
+			{
+
+			@Override
+			public void stateChanged(ChangeEvent e)
+				{
+				// TODO Auto-generated method stub
+				carte.treatment(((JSlider)e.getSource()).getValue());
+				repaint();
+				}
+			});
+
+		dim = new Dimension(200, 20);
 		button.setSize(dim);
 		button.setPreferredSize(dim);
-		button.setLocation(220, 10);
+		button.setLocation(60, 410);
 		button.addActionListener(new ActionListener()
 			{
 
@@ -114,10 +140,10 @@ public class JPanelMain extends JPanel
 				}
 			});
 
-		dim = new Dimension(310, 200);
+		dim = new Dimension(300, 210);
 		labelResult.setSize(dim);
 		labelResult.setPreferredSize(dim);
-		labelResult.setLocation(10, 210);
+		labelResult.setLocation(10, 440);
 		labelResult.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		}
 
@@ -133,7 +159,8 @@ public class JPanelMain extends JPanel
 		super.paintComponent(g);
 		if (carte != null)
 			{
-			g.drawImage(carte.getCardImage(), 10, 40, 310, 155, null);
+			g.drawImage(carte.getCardImage(), 10, 40, 300, 150, null);
+			g.drawImage(carte.getCardThres(), 10, 240, 300, 150, null);
 			}
 		}
 
@@ -142,6 +169,7 @@ public class JPanelMain extends JPanel
 		\*------------------------------------------------------------------*/
 	JFrameMain parent;
 	JSlider slider;
+	JSlider sliderThres;
 	JButton button;
 	JLabel labelResult;
 	Card carte;

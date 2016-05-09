@@ -65,7 +65,7 @@ public class JFrameMain extends JFrame
 
 	private void appearance()
 		{
-		setSize(350, 490);
+		setSize(340, 740);
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
 		}
@@ -100,6 +100,7 @@ public class JFrameMain extends JFrame
 					{
 					Maestro carte = new Maestro(path);
 					panelMain.setCard(carte);
+					panelMain.setSlider(115, 180);
 					}
 				}
 			});
@@ -120,6 +121,7 @@ public class JFrameMain extends JFrame
 					{
 					Permis carte = new Permis(path);
 					panelMain.setCard(carte);
+					panelMain.setSlider(115, 50);
 					}
 				}
 			});
@@ -139,6 +141,7 @@ public class JFrameMain extends JFrame
 					{
 					Postcard carte = new Postcard(path);
 					panelMain.setCard(carte);
+					panelMain.setSlider(235, 180);
 					}
 				}
 			});

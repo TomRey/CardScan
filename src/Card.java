@@ -31,11 +31,12 @@ public abstract class Card
 		try
 			{
 			imgCard = matToImg(mBase);
+			imgThres = imgCard;
 			}
 		catch (IOException e)
 			{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("erreur initImg");
 			}
 		Imgproc.cvtColor(mBase, mGray, Imgproc.COLOR_BGR2GRAY);
 		this.contours = new ArrayList<MatOfPoint>();
@@ -50,13 +51,14 @@ public abstract class Card
 		infoRect = getRectInfo();
 		matCard = new Mat(mBase, cardRect);
 		matInfo = new Mat(mBase, infoRect);
+		mTreatment = new Mat(matInfo.size(), CvType.CV_8U);
 		try
 			{
 			imgCard = matToImg(matCard);
 			}
 		catch (IOException e)
 			{
-			e.printStackTrace();
+			System.out.println("erreur matToImgCrop");
 			}
 		}
 
@@ -65,16 +67,30 @@ public abstract class Card
 		return imgCard;
 		}
 
+	public BufferedImage getCardThres()
+		{
+		return imgThres;
+		}
+
 	public void process()
 		{
-		treatment();
+		//treatment();
 		hideInfo();
 		Imgcodecs.imwrite(PATH_IMG_WITH_TREATMENT, mTreatment);
 		ocrAnalyse();
 		}
 
-	protected abstract void treatment();
-
+	protected void treatment(int thres)
+	{
+	try
+		{
+		imgThres = matToImg(mTreatment);
+		}
+	catch (IOException e)
+		{
+		System.out.println("erreur matToImgTreatment");
+		}
+	}
 	protected abstract void hideInfo();
 
 	protected abstract void printInfos(String[] result);
@@ -121,6 +137,7 @@ public abstract class Card
 				cardContour = contour;
 				}
 			}
+
 		cardRect = Imgproc.boundingRect(cardContour);
 		}
 
@@ -147,7 +164,7 @@ public abstract class Card
 	protected double zoneInfo;
 	protected int thresold;
 	protected String infos;
-	protected BufferedImage imgCard;
+	protected BufferedImage imgCard, imgThres;
 
 	public static final String PATH_IMG_WITH_TREATMENT = "images/imgToAnalyse.jpg";
 	}

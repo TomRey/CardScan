@@ -1,5 +1,3 @@
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
@@ -35,13 +33,13 @@ public class Permis extends Card
 	\*------------------------------------------------------------------*/
 
 	@Override
-	protected void treatment()
+	protected void treatment(int thres)
 		{
-		mTreatment = new Mat(matInfo.size(), CvType.CV_8U);
 		Imgproc.cvtColor(matInfo, mTreatment, Imgproc.COLOR_BGR2GRAY);
-		Imgproc.threshold(mTreatment, mTreatment, 50, 255, Imgproc.THRESH_BINARY_INV);
+		Imgproc.threshold(mTreatment, mTreatment, thres, 255, Imgproc.THRESH_BINARY_INV);//50
 		Imgproc.resize(mTreatment, mTreatment, new Size(mTreatment.width() * 5, mTreatment.height() * 5));
 		Imgproc.erode(mTreatment, mTreatment, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2, 2)));
+		super.treatment(thres);
 		}
 
 	@Override
