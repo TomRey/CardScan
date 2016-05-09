@@ -39,28 +39,26 @@ public class Permis extends Card
 		{
 		mTreatment = new Mat(matInfo.size(), CvType.CV_8U);
 		Imgproc.cvtColor(matInfo, mTreatment, Imgproc.COLOR_BGR2GRAY);
-		Imgproc.threshold(mTreatment, mTreatment, 50,255, Imgproc.THRESH_BINARY_INV);
-		Imgproc.resize(mTreatment, mTreatment, new Size(mTreatment.width()*5, mTreatment.height()*5));
-		Imgproc.erode(mTreatment, mTreatment, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2,2)));
+		Imgproc.threshold(mTreatment, mTreatment, 50, 255, Imgproc.THRESH_BINARY_INV);
+		Imgproc.resize(mTreatment, mTreatment, new Size(mTreatment.width() * 5, mTreatment.height() * 5));
+		Imgproc.erode(mTreatment, mTreatment, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2, 2)));
 		}
 
 	@Override
 	protected void hideInfo()
 		{
-		Imgproc.rectangle(mTreatment, new Point(mTreatment.width() - (mTreatment.width() * 0.1), 0), new Point(mTreatment.width(), mTreatment.height()*0.1), new Scalar(0), (int)(mTreatment.width()*0.1));
-
-		super.hideInfo();
+		Imgproc.rectangle(mTreatment, new Point(mTreatment.width() - (mTreatment.width() * 0.1), 0), new Point(mTreatment.width(), mTreatment.height() * 0.1), new Scalar(0), (int)(mTreatment.width() * 0.1));
 		}
 
 	@Override
 	protected void printInfos(String[] result)
 		{
-		System.out.println("PERMIS DE CONDUIRE");
+		infos = "<html><p>PERMIS DE CONDUIRE</p>";
 		for(int i = 0; i < result.length; i++)
 			{
-			System.out.println(result[i].replaceAll(" ", ""));
+			infos += "<p>" + result[i].replaceAll(" ", "") + "</p>";
 			}
-		System.out.println("\n");
+		infos += "</html>";
 		}
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|

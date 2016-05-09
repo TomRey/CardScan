@@ -45,19 +45,17 @@ public class Postcard extends Card
 	protected void hideInfo()
 		{
 		//Imgproc.rectangle(mTreatment, new Point(infoRect.width - (infoRect.width * 0.1), 0), new Point(infoRect.width, infoRect.height*0.1), new Scalar(0), (int)(infoRect.width*0.1));
-
-		super.hideInfo();
 		}
 
 	@Override
 	protected void printInfos(String[] result)
 		{
-		System.out.println("POSTCARD");
+		infos = "<html><p>POSTCARD</p>";
 		for(int i = 0; i < result.length; i++)
 			{
-			System.out.println(result[i]);
+			infos += "<p>"+result[i]+"</p>";
 			}
-		System.out.println("\n");
+		infos += "</html>";
 		}
 
 	/*------------------------------------------------------------------*\
